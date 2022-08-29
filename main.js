@@ -25,17 +25,8 @@ const questions=[
       d:'Incorrect',
       correct:'c'
    },
-
-   {
-      question:'Describe bitcoin:',
-      a:'scam scam scam',
-      b:'Lambo Lambo Lambo',
-      c:'moon moon moon',
-      d:'untractable nonforfeitable blockchain',
-      correct:'d'
-   },
-
-   {
+    
+   ,{
       question:'Select incorrect:',
       a:'incorrect',
       b:'correct',
@@ -44,6 +35,15 @@ const questions=[
       correct:'a'
    },
 ];
+
+function thirdIndex(question,a,b,c,d,correct){
+   this.question=question;
+   this.a=a;
+   this.b=b;
+   this.c=c;
+   this.d=d;
+   this.correct=correct;
+}
 
 let checkQuestion=document.querySelector('.check');
 let nextQuestion=document.querySelector('.next');
@@ -56,10 +56,15 @@ let firstAnswer_text=document.querySelector('.a');
 let secondAnswer_text=document.querySelector('.b');
 let thirdAnswer_text=document.querySelector('.c');
 let forthAnswer_text=document.querySelector('.d');
-let arrayOfSpans=[firstAnswer_text,secondAnswer_text,thirdAnswer_text,firstAnswer_text];
+let arrayOfSpans=[firstAnswer_text,secondAnswer_text,thirdAnswer_text,forthAnswer_text];
 
 function randomNumberGenerator(){
-   let num=Math.floor(Math.random()*6);
+   let num=Math.floor(Math.random()*questions.length);
+   if(num===3){
+      let questionNumberThree= new thirdIndex('Describe bitcoin:','scam scam scam','Lambo Lambo Lambo','moon moon moon','untractable nonforfeitable blockchain','c');
+      questions.splice(num,1,questionNumberThree);
+      return num;
+   }
    return num;
 };
 
@@ -121,12 +126,14 @@ checkQuestion.addEventListener('click',()=>{
                const anotherIndex=randomNumberGenerator();
                const anotherSelectedQuestion=questions[anotherIndex];
                fill(anotherSelectedQuestion);
-            },1500)
+               link(anotherIndex);
+               reset();
+            },1569)
          }
       }
    }else{
       let selected=document.getElementsByClassName(myId);
       selected[0].setAttribute('style','border:1px solid red')
-      setTimeout(()=>{},1500)
+      /* setTimeout(()=>{},1569) */
    }
 })
