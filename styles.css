@@ -1,0 +1,91 @@
+body{
+   background-color: bisque;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   width:100%;
+   box-sizing: border-box;
+}
+
+.container{
+   width:50%;
+   padding:50px;
+   background-color: white;
+   color: black;
+   border:1px solid transparent;
+   box-shadow: 0 0 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   border-radius: 10px;
+}
+
+.container .question{
+   font-size: 2rem;
+   border-bottom: 1px solid black;
+   margin-bottom: 30px;
+   width:100%;
+   text-align: center;
+   padding-bottom: 10px;
+   font-weight: bold;
+}
+
+.container .answers{
+   font-size: 1.3rem;
+}
+
+.container .answers>div{
+   margin-bottom: 15px;
+}
+
+.container .buttons{
+   margin-top: 25px;
+}
+
+button{
+   border: 1px solid black;
+   border-radius: 20px;
+   padding:15px 20px;
+   font-size: 1.1rem;
+   cursor: pointer;
+   font-weight: bold;
+}
+
+.buttons .check{
+   background-color: white;
+   color: green;
+   margin-right: 70px;
+   border: 2px solid green;
+}
+
+.buttons .next{
+   background-color: white;
+   color: orange;
+   border: 2px solid orange;
+}
+
+.buttons .check:hover{
+   background-color: green;
+   color: white;
+   transition: ease .5s all;
+}
+
+.buttons .check:active{
+   background-color: white;
+   color: green;
+   transition: ease .5s all;
+}
+
+.buttons .next:hover{
+   background-color: orange;
+   color: white;
+   transition: ease .5s all;
+}
+
+.buttons .next:active{
+   background-color: white;
+   color: orange;
+   transition: ease .5s all;
+}
+
