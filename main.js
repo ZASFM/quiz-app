@@ -25,8 +25,17 @@ const questions=[
       d:'Incorrect',
       correct:'c'
    },
-    
-   ,{
+
+   {
+      question:'Select 1:',
+      a:'1',
+      b:'2',
+      c:'3',
+      d:'4',
+      correct:'a'
+   },
+   
+   {
       question:'Select incorrect:',
       a:'incorrect',
       b:'correct',
@@ -36,14 +45,25 @@ const questions=[
    },
 ];
 
-function thirdIndex(question,a,b,c,d,correct){
+/* function thirdIndex(question,a,b,c,d){
    this.question=question;
    this.a=a;
    this.b=b;
    this.c=c;
    this.d=d;
-   this.correct=correct;
-}
+   let correct=this.d;
+   Object.defineProperty(this,'correct',{
+      get:function(){
+         return correct
+      },
+      set:function(newValue){
+         if(!newValue){
+            throw new Error('Check the newValue')
+         }
+         correct=newValue
+      }
+   })
+} */
 
 let checkQuestion=document.querySelector('.check');
 let nextQuestion=document.querySelector('.next');
@@ -51,6 +71,7 @@ let nextQuestion=document.querySelector('.next');
 let questionMarkup=document.querySelector('.question');
 
 let inputs=document.querySelectorAll('.answer')
+let alert=document.querySelector('.alert');
 
 let firstAnswer_text=document.querySelector('.a');
 let secondAnswer_text=document.querySelector('.b');
@@ -60,11 +81,6 @@ let arrayOfSpans=[firstAnswer_text,secondAnswer_text,thirdAnswer_text,forthAnswe
 
 function randomNumberGenerator(){
    let num=Math.floor(Math.random()*questions.length);
-   if(num===3){
-      let questionNumberThree= new thirdIndex('Describe bitcoin:','scam scam scam','Lambo Lambo Lambo','moon moon moon','untractable nonforfeitable blockchain','c');
-      questions.splice(num,1,questionNumberThree);
-      return num;
-   }
    return num;
 };
 
@@ -115,13 +131,23 @@ function unselectRadio(){
    })
 }
 
+function displayAlert(text,status){
+   alert.textContent=text;
+   alert.classList.add(status);
+   setTimeout(()=>{
+      alert.textContent='';
+      alert.classList.remove(status);
+   },1569)
+}
+
 checkQuestion.addEventListener('click',()=>{
    let myId=correctAnswer();
    let obj=objForCheck;
    if(myId===questions[obj].correct){
       for(let i=0;i<arrayOfSpans.length;i++){
          if(arrayOfSpans[i].className===myId){
-            arrayOfSpans[i].setAttribute('style','border:1px solid green;')
+            arrayOfSpans[i].setAttribute('style','color:green')
+            displayAlert('Nailed it','correct')
             setTimeout(()=>{
                const anotherIndex=randomNumberGenerator();
                const anotherSelectedQuestion=questions[anotherIndex];
@@ -133,7 +159,10 @@ checkQuestion.addEventListener('click',()=>{
       }
    }else{
       let selected=document.getElementsByClassName(myId);
-      selected[0].setAttribute('style','border:1px solid red')
-      /* setTimeout(()=>{},1569) */
+      selected[0].setAttribute('style','color:red')
+      displayAlert('Incorrect','incorrect')
+      setTimeout(()=>{
+         selected[0].setAttribute('style','color:black')
+      },1569)
    }
 })

@@ -89,3 +89,21 @@ button{
    transition: ease .5s all;
 }
 
+.alert{
+   font-size: 1.5rem;
+   color:black;
+   font-weight: bold;
+   visibility: hidden;
+   width: 100%;
+   text-align: center;
+}
+
+.correct{
+   visibility: visible;
+   background-color: green;
+}
+
+.incorrect{
+   visibility: visible;
+   background-color: red;
+}
